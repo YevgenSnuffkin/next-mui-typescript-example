@@ -1,7 +1,7 @@
 import React from 'react'
 import { CssBaseline } from '@material-ui/core'
 import { ThemeProvider, StylesProvider, ServerStyleSheets } from '@material-ui/styles'
-import { MaterialPageContext, WebpackBrowser, MainAppProps } from '../types'
+import { MaterialPageContext, WebpackBrowser } from '../types'
 import theme from '../theme/theme'
 
 // withMaterial wraps <App> in the Material UI Theme and Styles providers.
@@ -12,7 +12,11 @@ type WithMaterialProps = {
     noStylesGeneration?: boolean
 }
 
-export default (App: React.ComponentClass<MainAppProps>) => {
+interface AppProps extends WithMaterialProps {
+    pageContext: MaterialPageContext
+}
+
+export default (App: React.ComponentType<AppProps>) => {
     return class WithMaterial extends React.Component<WithMaterialProps> {
         static displayName: string = `WithMaterial(${App.displayName})`
         private pageContext: MaterialPageContext | null

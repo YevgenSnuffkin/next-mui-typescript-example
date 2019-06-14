@@ -1,7 +1,22 @@
 import { createMuiTheme } from '@material-ui/core/styles'
+import color from '@material-ui/core/colors/red'
 
-export default createMuiTheme({
-    typography: {
-        useNextVariants: true
-    } // https://material-ui.com/style/typography/#migration-to-typography-v2
+// Create a theme instance.
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            main: '#556cd6'
+        },
+        secondary: {
+            main: '#19857b'
+        },
+        error: {
+            main: color.A400
+        },
+        background: {
+            default: '#fff'
+        }
+    }
 })
+
+export default theme

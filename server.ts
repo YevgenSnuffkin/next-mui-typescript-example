@@ -1,32 +1,27 @@
-import express from 'express'
-import { parse } from 'url'
+import e from 'express'
 import next from 'next'
 
+const port = parseInt(process.env.PORT!, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
-const handle = app.getRequestHandler()
+const handler = app.getRequestHandler()
 
 app.prepare().then(() => {
-  const server = express()
+    const server = e()
 
-  // CUSTOM ROUTES GO HERE
-  server.get('/blog/', (req, res) => {
-    // const mergedQuery = Object.assign({}, req.query, req.params)
+    server.get('/uzytkownik/:id', (req, res) => {
+        return app.render(req, res, '/user', { id: req.params.id })
+    })
 
-    console.log(req.query)
-  })
+    server.get('*', (req, res) => {
+        return handler(req, res)
+    })
 
-  // THIS IS THE DEFAULT ROUTE, DON'T EDIT THIS
-  server.get('*', (req, res) => {
-    return handle(req, res)
-  })
+    server.listen(port, (err: Error) => {
+        if (err) {
+            throw err
+        }
 
-  const port = process.env.PORT || 3000
-
-  server.listen(port, (err: Error) => {
-    if (err) {
-        throw err
-    }
-    console.log(`> Ready on port ${port}...`)
-  })
+        console.log(`> Ready on http://localhost:${port}`)
+    })
 })

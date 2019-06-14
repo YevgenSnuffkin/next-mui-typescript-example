@@ -2,11 +2,25 @@
   "presets": ["next/babel", "@zeit/next-typescript/babel"],
   "plugins": [
     [
+      "styled-components",
+      {
+        "ssr": true
+      }
+    ],
+    [
       "module-resolver",
       {
-        "root": ["./", "./src/**"],
+        "root": ["./"],
         "alias": {
-          "^react-native$": "react-native-web"
+          "^react-native$": "react-native-web",
+          "assets": "./static/assets",
+          "common": "./src/common",
+          "lib": "./src/lib",
+          "types": "./src/types",
+          "models": "./src/models",
+          "utils": "./src/utils",
+          "features": "./src/features",
+          "styles": "./src/styles"
         }
       }
     ]

@@ -12,7 +12,8 @@ export type MaterialPageContext = {
 }
 
 export type DocumentProps = {
-    pageContext: MaterialPageContext
+    pageContext: MaterialPageContext,
+    pageProps: {}
 }
 
 export type WindowBrowser = {
